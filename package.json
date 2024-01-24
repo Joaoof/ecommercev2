@@ -23,7 +23,12 @@
   "lint-staged": {
     "*.ts": [
       "eslint 'src/**' --fix",
+      "yarn test:staged",
       "git add"
     ]
+  },
+  "scripts": {
+    "test": "jest",
+    "test:staged": "jest"
   }
 }
