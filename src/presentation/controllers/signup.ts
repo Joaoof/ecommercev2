@@ -19,13 +19,15 @@ export class SignUpController implements Controller {
         }
       }
 
-      const isValid = this.emailValidator.isValid(httpRequest.body.email)
+      const { email, password, passwordConfirmation } = httpRequest.body
+
+      const isValid = this.emailValidator.isValid(email)
 
       if (!isValid) {
         return badRequest(new InvalidParamError('email'))
       } // validação se o email for inválido
 
-      if (httpRequest.body.password !== httpRequest.body.passwordConfirmation) {
+      if (password !== passwordConfirmation) {
         return badRequest(new InvalidParamError('passwordConfirmation'))
       } // validação caso a senhas sejam diferentes
 
